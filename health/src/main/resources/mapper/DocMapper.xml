@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.health.mapper.DocMapper">
+
+    <select id="login" resultType="int">
+        select DOCID from doc
+        where userName=#{userName} and passWord=#{passWord}
+    </select>
+
+    <select id="selectUserName" resultType="int">
+        select count(*) from doc
+        where userName=#{userName}
+    </select>
+
+    <insert id="logon">
+        insert into doc
+        (BIRTH,
+        USERNAME,PASSWORD)
+        values (#{doc.birth},#{doc.userName},#{doc.passWord})
+    </insert>
+
+    <select id="getAppointmentListByQueryCondition" resultType="com.example.health.domin.User">
+        select * from appointment
+        <where>
+            <if test="queryCondition.userId !=null and queryCondition.userId !=''">
+                USERID =#{ queryCondition.userId }
+            </if>
+            <if test="queryCondition.finish !=null and queryCondition.finish !='' and queryCondition.finish != '2'">
+                FINISH =#{ queryCondition.finish }
+            </if>
+            <if test="queryCondition.finish == '2'">
+                FINISH =2 or FINISH =3
+            </if>
+            <if test="queryCondition.name !=null and queryCondition.name !=''">
+            `NAME` =#{ queryCondition.name }
+            </if>
+            <if test="queryCondition.sex !=null and queryCondition.sex !=''">
+              and SEX = #{ queryCondition.sex }
+            </if>
+            <if test="queryCondition.startTime !=null and queryCondition.startTime !='' and queryCondition.endTime != null and queryCondition.endTime != ''">
+                and STR_TO_DATE(`TIME`,'%Y-%m-%d %H:%i:%s')
+                between STR_TO_DATE(#{ queryCondition.startTime },'%Y-%m-%d %H:%i:%s')
+                and STR_TO_DATE(#{ queryCondition.endTime },'%Y-%m-%d %H:%i:%s')
+            </if>
+            <if test="queryCondition.time !=null and queryCondition.time !=''">
+                and `TIME` = #{ queryCondition.time }
+            </if>
+        </where>
+    </select>
+
+    <update id="updateAppointment">
+        update appointment
+        <set>
+            <if test="queryCondition.finish != null">
+                FINISH = #{queryCondition.finish}
+            </if>
+        </set>
+        where USERID = #{queryCondition.userId} and `TIME` = #{queryCondition.time}
+    </update>
+
+    <insert id="createHealth">
+        insert into health
+        (USERID,
+        `TIME`)
+        values (#{health.userId},#{health.time})
+    </insert>
+
+    <update id="updateNHealth">
+        update health
+        <set>
+        <if test="health.xueYa != null">
+        XUEYA = #{health.xueYa},
+        </if>
+            <if test="health.xueTang != null">
+                XUETANG = #{health.xueTang},
+            </if>
+            <if test="health.fei != null">
+                FEI = #{health.fei},
+            </if>
+            <if test="health.xinZang != null">
+                XINZANG = #{health.xinZang},
+            </if>
+            <if test="health.fuBU != null">
+                FUBU = #{health.fuBu},
+            </if>
+            <if test="health.shenZang != null">
+                SHENZANG = #{health.shenZang},
+            </if>
+            NDOCID = #{health.nDocId}
+        </set>
+        where USERID = #{health.userId} and `TIME` = #{health.time}
+    </update>
+
+    <update id="updateWHealth">
+        update health
+        <set>
+            <if test="health.shenGao != null">
+                SHENGAO = #{health.shenGao},
+            </if>
+            <if test="health.tiZhong != null">
+                TIZHONG = #{health.tiZhong},
+            </if>
+            <if test="health.feiHuo != null">
+                FEIHUO = #{health.feiHuo},
+            </if>
+            <if test="health.waiShang != null">
+                WAISHANG = #{health.waiShang},
+            </if>
+            WDOCID = #{health.wDocId}
+        </set>
+        where USERID = #{health.userId} and `TIME` = #{health.time}
+    </update>
+
+    <update id="updateEHealth">
+        update health
+        <set>
+            <if test="health.eyeL != null">
+                EYEL = #{health.eyeL},
+            </if>
+            <if test="health.eyeR != null">
+                EYER = #{health.eyeR},
+            </if>
+            <if test="health.color != null">
+                color = #{health.color},
+            </if>
+            EDOCID = #{health.eDocId}
+        </set>
+        where USERID = #{health.userId} and `TIME` = #{health.time}
+    </update>
+
+    <select id="getHealth" resultType="com.example.health.domin.Health">
+        select * from health
+        where USERID=#{health.userId} and `TIME`=#{health.time}
+    </select>
+
+    <select id="getDoc" resultType="com.example.health.domin.Doc">
+        select * from doc
+        where DOCID=#{docId}
+    </select>
+
+    <update id="updateDoc">
+        update doc
+        <set>
+            <if test="doc.passWord != null">
+                PASSWORD = #{doc.passWord},
+            </if>
+            <if test="doc.birth != null">
+                BIRTH = #{doc.birth}
+            </if>
+        </set>
+        where USERNAME = #{doc.userName}
+    </update>
+
+    <select id="getDocQua" resultType="com.example.health.domin.Doc">
+        select * from doc_qua
+        where DOCID=#{docId}
+    </select>
+</mapper>
