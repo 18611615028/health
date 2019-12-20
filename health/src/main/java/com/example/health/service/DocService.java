@@ -1,15 +1,13 @@
 package com.example.health.service;
 
-import com.example.health.domin.Doc;
-import com.example.health.domin.Health;
-import com.example.health.domin.QueryCondition;
-import com.example.health.domin.User;
+import com.example.health.domin.*;
 
 import java.util.Date;
 import java.util.List;
 
 public interface DocService {
     int login(String userName, String passWord);
+    int loginAdmin(String userName, String passWord);
     void logon(Doc doc) throws Exception;
     List<User> getAppointmentList(QueryCondition queryCondition);
     void createHealth(Health health);
@@ -17,4 +15,8 @@ public interface DocService {
     Doc getDoc(int docId);
     void updateDoc(Doc doc);
     Doc getDocQua(int docId);
+    void updateDocQua(Doc doc);
+    List<Knowledge> getKnowledgeList();
+    void createKnowledge(Knowledge knowledge);
+    Knowledge checkKnowledge(int id);
 }

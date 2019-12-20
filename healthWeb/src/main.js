@@ -6,9 +6,11 @@ import App from './App.vue';
 import axios from 'axios'
 
 
+
 Vue.use(ElementUI);
 Vue.prototype.axios = axios;
 Vue.use( axios);
+
 
 new Vue({
   el: '#app',

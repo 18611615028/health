@@ -36,6 +36,16 @@ export default new Router({
       component: () => import("@/components/knowledge")
     },
     {
+      path: '/checkKnowledge',
+      name: 'checkKnowledge',
+      component: () => import("@/components/checkKnowledge")
+    },
+    {
+      path: '/knowledgeList',
+      name: 'knowledgeList',
+      component: () => import("@/components/knowledgeList")
+    },
+    {
       path: '/qualification',
       name: 'qualification',
       component: () => import("@/components/qualification")

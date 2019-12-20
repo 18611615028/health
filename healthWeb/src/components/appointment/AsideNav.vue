@@ -1,7 +1,6 @@
 <template>
   <div>
-    <el-row class="tac" style="position: fixed;height:100%;bottom: 0px;">
-      <el-col :span="12" style="position: fixed;height:100%;bottom: 0px;">
+    <el-row style="position: fixed;height:100%;bottom: 0px;">
         <el-menu
         style="height:100%;width:200px"
           default-active="1"
@@ -18,7 +17,7 @@
             <i class="el-icon-document"></i>
             <span slot="title">体检报告</span>
           </el-menu-item> -->
-          <el-menu-item index="3" @click="goNav('/knowledge')">
+          <el-menu-item index="3" @click="goNav('/knowledgeList')">
             <i class="el-icon-s-management"></i>
             <span slot="title">健康知识</span>
           </el-menu-item>
@@ -35,7 +34,7 @@
             <span slot="title">退出</span>
           </el-menu-item>
         </el-menu>
-      </el-col>
+
     </el-row>
   </div>
 </template>

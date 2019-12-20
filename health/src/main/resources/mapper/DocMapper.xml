@@ -8,6 +8,11 @@
         where userName=#{userName} and passWord=#{passWord}
     </select>
 
+    <select id="loginAdmin" resultType="int">
+        select ADMINID from admin
+        where userName=#{userName} and passWord=#{passWord}
+    </select>
+
     <select id="selectUserName" resultType="int">
         select count(*) from doc
         where userName=#{userName}
@@ -155,5 +160,34 @@
     <select id="getDocQua" resultType="com.example.health.domin.Doc">
         select * from doc_qua
         where DOCID=#{docId}
+    </select>
+
+    <update id="updateDocQua">
+        update doc_qua
+        <set>
+            DOCCID = #{doc.docCId},OFFICE = #{doc.office},TITLE = #{doc.title},`NAME` = #{doc.name},STATUS = #{doc.status},
+        </set>
+        where  DOCID=#{doc.docId}
+    </update>
+
+    <insert id="insertIdInDocQua">
+        insert into doc_qua
+        (DOCID)
+        values (#{docId})
+    </insert>
+
+    <select id="getKnowledgeList" resultType="com.example.health.domin.Knowledge">
+        select * from knowledge
+    </select>
+
+    <insert id="createKnowledge">
+        insert into knowledge
+        (TITLE,KNOWLEDGE,DOCCID,`TIME`,STATUS)
+        values (#{knowledge.title},#{knowledge.knowledge},#{knowledge.docCId},#{knowledge.time},#{knowledge.status})
+    </insert>
+
+    <select id="checkKnowledge" resultType="com.example.health.domin.Knowledge">
+        select * from knowledge
+        where ID=#{Id}
     </select>
 </mapper>

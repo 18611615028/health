@@ -78,6 +78,20 @@ export default {
           this.$message.error("用户名或密码错误");
         })
       }
+      if (this.roles == "管理员") {
+          var data = {
+              userName: this.userName,
+              passWord: this.passWord,
+          }
+        DocService.loginAdmin(data).then(res => {
+          if (res.status == 200) {
+            window.localStorage.setItem("adminId", res.data)
+            this.$router.push("/appointment")
+          }
+        }).catch(err=>{
+          this.$message.error("用户名或密码错误");
+        })
+      }
     },
 
     logon(){

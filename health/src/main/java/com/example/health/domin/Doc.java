@@ -7,16 +7,25 @@ public class Doc {
     String userName;
     String passWord;
     String birth;
-    int docCId;
+    long docCId;
     String office;
     String title;
     String name;
+    int status;
 
-    public int getDocCId() {
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public long getDocCId() {
         return docCId;
     }
 
-    public void setDocCId(int docCId) {
+    public void setDocCId(long docCId) {
         this.docCId = docCId;
     }
 
