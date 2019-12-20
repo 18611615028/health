@@ -1,15 +1,13 @@
 package com.example.health.mapper;
 
-import com.example.health.domin.Doc;
-import com.example.health.domin.Health;
-import com.example.health.domin.QueryCondition;
-import com.example.health.domin.User;
+import com.example.health.domin.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface DocMapper {
     int login(@Param("userName")String userName, @Param("passWord")String passWord);
+    int loginAdmin(@Param("userName")String userName, @Param("passWord")String passWord);
     void logon(@Param("doc") Doc doc);
     List<User> getAppointmentListByQueryCondition(@Param("queryCondition") QueryCondition queryCondition);
     void createHealth(@Param("health") Health health);
@@ -22,4 +20,9 @@ public interface DocMapper {
     Doc getDoc(@Param("docId") int docId);
     void updateDoc(@Param("doc") Doc doc);
     Doc getDocQua(@Param("docId") int docId);
+    void updateDocQua(@Param("doc") Doc doc);
+    List<Knowledge> getKnowledgeList();
+    void createKnowledge(@Param("knowledge") Knowledge knowledge);
+    void insertIdInDocQua(@Param("docId") int docId);
+    Knowledge checkKnowledge(@Param("Id") int Id);
 }

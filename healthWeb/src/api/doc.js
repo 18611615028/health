@@ -10,6 +10,14 @@ export function login(data){
     })
 }
 
+export function loginAdmin(data){
+    return request({
+        url:path+'/loginAdmin',
+        method:'post',
+        data
+    })
+}
+
 export function logon(data){
     return request({
         url:path+'/logon',
@@ -60,6 +68,37 @@ export function updateDoc(data){
 export function getDocQua(data){
     return request({
         url:path+'/getDocQua?docId='+data,
+        method:'get',
+    })
+}
+
+export function updateDocQua(data){
+    return request({
+        url:path+'/updateDocQua',
+        method:'post',
+        data
+    })
+}
+
+export function createKnowledge(data){
+    return request({
+        url:path+'/createKnowledge',
+        method:'post',
+        data
+    })
+}
+
+export function getKnowledgeList(data){
+    return request({
+        url:path+'/getKnowledgeList',
+        method:'post',
+        data
+    })
+}
+
+export function checkKnowledge(id){
+    return request({
+        url:path+'/checkKnowledge?id='+id,
         method:'get',
     })
 }

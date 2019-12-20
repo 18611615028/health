@@ -1,9 +1,6 @@
 package com.example.health.controller;
 
-import com.example.health.domin.Doc;
-import com.example.health.domin.Health;
-import com.example.health.domin.QueryCondition;
-import com.example.health.domin.User;
+import com.example.health.domin.*;
 import com.example.health.service.DocService;
 import com.example.health.service.DocServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +53,32 @@ public class DocController {
 
     @RequestMapping(value = "/getDocQua",method = RequestMethod.GET)
     public Doc getDocQua(int docId){
-        return docService.getDocQua(docId);
+        Doc docQua = docService.getDocQua(docId);
+        return docQua;
+    }
+
+    @RequestMapping(value = "/updateDocQua",method = RequestMethod.POST)
+    public void updateDocQua(@RequestBody Doc doc){
+        docService.updateDocQua(doc);
+    }
+
+    @RequestMapping(value = "/getKnowledgeList",method = RequestMethod.POST)
+    public List<Knowledge> getKnowledgeList(){
+         return docService.getKnowledgeList();
+    }
+
+    @RequestMapping(value = "/createKnowledge",method = RequestMethod.POST)
+    public void createKnowledgeList(@RequestBody Knowledge knowledge){
+        docService.createKnowledge(knowledge);
+    }
+
+    @RequestMapping(value = "/checkKnowledge",method = RequestMethod.GET)
+    public Knowledge checkKnowledge(int id){
+       return docService.checkKnowledge(id);
+    }
+
+    @RequestMapping(value = "/loginAdmin",method = RequestMethod.POST)
+    public int loginAdmin(@RequestBody Admin admin){
+        return docService.loginAdmin(admin.getUserName(),admin.getPassWord());
     }
 }

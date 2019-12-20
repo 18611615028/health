@@ -1,9 +1,6 @@
 package com.example.health.service;
 
-import com.example.health.domin.Doc;
-import com.example.health.domin.Health;
-import com.example.health.domin.QueryCondition;
-import com.example.health.domin.User;
+import com.example.health.domin.*;
 import com.example.health.mapper.DocMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,11 +20,18 @@ public class DocServiceImpl implements DocService{
     }
 
     @Override
+    public int loginAdmin(String userName, String passWord){
+        return docMapper.loginAdmin(userName,passWord);
+    }
+
+    @Override
     public void logon(Doc doc) throws Exception {
         if(docMapper.selectUserName(doc.getUserName())>0){
             throw new Exception();
         }
         docMapper.logon(doc);
+        int d = docMapper.login(doc.getUserName(),doc.getPassWord());
+        docMapper.insertIdInDocQua(d);
     }
 
     @Override
@@ -74,5 +78,25 @@ public class DocServiceImpl implements DocService{
     @Override
     public Doc getDocQua(int docId){
         return docMapper.getDocQua(docId);
+    }
+
+    @Override
+    public void updateDocQua(Doc doc){
+        docMapper.updateDocQua(doc);
+    }
+
+    @Override
+    public List<Knowledge> getKnowledgeList(){
+        return docMapper.getKnowledgeList();
+    }
+
+    @Override
+    public void createKnowledge(Knowledge knowledge){
+        docMapper.createKnowledge(knowledge);
+    }
+
+    @Override
+    public Knowledge checkKnowledge(int id){
+        return docMapper.checkKnowledge(id);
     }
 }
