@@ -81,4 +81,14 @@ public class DocController {
     public int loginAdmin(@RequestBody Admin admin){
         return docService.loginAdmin(admin.getUserName(),admin.getPassWord());
     }
+
+    @RequestMapping(value = "/updateKnowledge",method = RequestMethod.GET)
+    public void updateKnowledge(int id, int status){
+        docService.updateKnowledge(id,status);
+    }
+
+    @RequestMapping(value = "/getDocQuaList",method = RequestMethod.GET)
+    public List<Doc> getDocQuaList(){
+        return docService.getDocQuaList();
+    }
 }

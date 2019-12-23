@@ -25,4 +25,6 @@ public interface DocMapper {
     void createKnowledge(@Param("knowledge") Knowledge knowledge);
     void insertIdInDocQua(@Param("docId") int docId);
     Knowledge checkKnowledge(@Param("Id") int Id);
+    void updateKnowledge(@Param("Id") int Id,@Param("status") int status);
+    List<Doc> getDocQuaList();
 }

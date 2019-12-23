@@ -60,7 +60,7 @@
             <div v-if="docStatus=='眼科' ||status==4">
               <el-form-item label="左眼视力">
                 <el-input-number
-                :disabled="eDisable"
+                  :disabled="eDisable"
                   v-model="ruleForm.eyeL"
                   :precision="1"
                   :step="0.1"
@@ -70,7 +70,7 @@
               </el-form-item>
               <el-form-item label="右眼视力">
                 <el-input-number
-                :disabled="eDisable"
+                  :disabled="eDisable"
                   v-model="ruleForm.eyeR"
                   :precision="1"
                   :step="0.1"
@@ -80,7 +80,7 @@
               </el-form-item>
               <el-form-item label="眼睛检查">
                 <el-input
-                :disabled="eDisable"
+                  :disabled="eDisable"
                   type="textarea"
                   maxlength="100"
                   show-word-limit
@@ -92,7 +92,7 @@
             <div v-if="docStatus=='外科' ||status==4">
               <el-form-item label="身高">
                 <el-input
-                :disabled="wDisable"
+                  :disabled="wDisable"
                   maxlength="3"
                   show-word-limit
                   style="width:220px"
@@ -101,7 +101,7 @@
               </el-form-item>
               <el-form-item label="体重">
                 <el-input
-                :disabled="wDisable"
+                  :disabled="wDisable"
                   maxlength="3"
                   show-word-limit
                   style="width:220px"
@@ -110,7 +110,7 @@
               </el-form-item>
               <el-form-item label="肺活量">
                 <el-input
-                :disabled="wDisable"
+                  :disabled="wDisable"
                   maxlength="4"
                   show-word-limit
                   style="width:220px"
@@ -119,7 +119,7 @@
               </el-form-item>
               <el-form-item label="外伤检查">
                 <el-input
-                :disabled="wDisable"
+                  :disabled="wDisable"
                   type="textarea"
                   maxlength="100"
                   show-word-limit
@@ -130,14 +130,28 @@
             </div>
             <div v-if="docStatus=='内科' ||status==4">
               <el-form-item label="收缩压">
-                <el-input-number :disabled="nDisable" v-model="xueYa1" :precision="0" :step="1" :min="1" :max="200"></el-input-number>mmHg
+                <el-input-number
+                  :disabled="nDisable"
+                  v-model="xueYa1"
+                  :precision="0"
+                  :step="1"
+                  :min="1"
+                  :max="200"
+                ></el-input-number>mmHg
               </el-form-item>
               <el-form-item label="舒张压">
-                <el-input-number :disabled="nDisable" v-model="xueYa2" :precision="0" :step="1" :min="1" :max="200"></el-input-number>mmHg
+                <el-input-number
+                  :disabled="nDisable"
+                  v-model="xueYa2"
+                  :precision="0"
+                  :step="1"
+                  :min="1"
+                  :max="200"
+                ></el-input-number>mmHg
               </el-form-item>
               <el-form-item label="血糖">
                 <el-input-number
-                :disabled="nDisable"
+                  :disabled="nDisable"
                   v-model="ruleForm.xueTang"
                   :precision="3"
                   :step="0.1"
@@ -147,7 +161,7 @@
               </el-form-item>
               <el-form-item label="肺部检查">
                 <el-input
-                :disabled="nDisable"
+                  :disabled="nDisable"
                   type="textarea"
                   maxlength="100"
                   show-word-limit
@@ -157,7 +171,7 @@
               </el-form-item>
               <el-form-item label="心脏检查">
                 <el-input
-                :disabled="nDisable"
+                  :disabled="nDisable"
                   type="textarea"
                   maxlength="100"
                   show-word-limit
@@ -167,7 +181,7 @@
               </el-form-item>
               <el-form-item label="腹部检查">
                 <el-input
-                :disabled="nDisable"
+                  :disabled="nDisable"
                   type="textarea"
                   maxlength="100"
                   show-word-limit
@@ -177,7 +191,7 @@
               </el-form-item>
               <el-form-item label="肾脏检查">
                 <el-input
-                :disabled="nDisable"
+                  :disabled="nDisable"
                   type="textarea"
                   maxlength="100"
                   show-word-limit
@@ -307,6 +321,7 @@ export default {
                 this.ruleForm.color = res.data.color;
                 this.eDisable = true;
               }
+              this.$forceUpdate()
             }
           })
           .catch(err => {
@@ -314,7 +329,7 @@ export default {
           });
       } else if (this.status == 4) {
         //不可更改
-         var a = {
+        var a = {
           userId: Number(this.$route.query.id),
           time: this.$route.query.time
         };
@@ -322,12 +337,9 @@ export default {
           .then(res => {
             if (res.status == 200) {
               this.ruleForm = res.data[0];
-            }
-          })
-          .catch(err => {
-            this.$message.error("服务器异常");
-          });
-        DocService.getHealth(a)
+
+
+              DocService.getHealth(a)
           .then(res => {
             if (res.status == 200) {
               if (res.data.nDocId != 0) {
@@ -360,11 +372,19 @@ export default {
                 this.ruleForm.color = res.data.color;
                 this.eDisable = true;
               }
+              this.$forceUpdate()
+            }
+            
+          })
+          .catch(err => {
+            this.$message.error("服务器异常");
+          });
             }
           })
           .catch(err => {
             this.$message.error("服务器异常");
           });
+        
       }
     },
 

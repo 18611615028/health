@@ -99,4 +99,14 @@ public class DocServiceImpl implements DocService{
     public Knowledge checkKnowledge(int id){
         return docMapper.checkKnowledge(id);
     }
+
+    @Override
+    public void updateKnowledge(int id,int status){
+        docMapper.updateKnowledge(id,status);
+    }
+
+    @Override
+    public List<Doc> getDocQuaList(){
+        return docMapper.getDocQuaList();
+    }
 }

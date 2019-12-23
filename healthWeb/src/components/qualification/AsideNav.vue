@@ -42,6 +42,9 @@
   export default {
     methods: {
         goNav(path){
+          if(path=='/login'){
+            window.localStorage.clear()
+          }
             this.$router.push(path)
         }
     }

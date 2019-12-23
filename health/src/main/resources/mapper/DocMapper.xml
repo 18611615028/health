@@ -165,7 +165,19 @@
     <update id="updateDocQua">
         update doc_qua
         <set>
-            DOCCID = #{doc.docCId},OFFICE = #{doc.office},TITLE = #{doc.title},`NAME` = #{doc.name},STATUS = #{doc.status},
+            <if test="doc.docCId != null">
+            DOCCID = #{doc.docCId},
+            </if>
+            <if test="doc.office != null">
+            OFFICE = #{doc.office},
+            </if>
+            <if test="doc.title != null">
+            TITLE = #{doc.title},
+            </if>
+            <if test="doc.name != null">
+            `NAME` = #{doc.name},
+            </if>
+            STATUS = #{doc.status}
         </set>
         where  DOCID=#{doc.docId}
     </update>
@@ -189,5 +201,18 @@
     <select id="checkKnowledge" resultType="com.example.health.domin.Knowledge">
         select * from knowledge
         where ID=#{Id}
+    </select>
+
+    <update id="updateKnowledge">
+        update knowledge
+        <set>
+        STATUS = #{status}
+        </set>
+        where  ID=#{Id}
+    </update>
+
+    <select id="getDocQuaList" resultType="com.example.health.domin.Doc">
+        select * from doc_qua
+        where STATUS=1
     </select>
 </mapper>

@@ -102,3 +102,17 @@ export function checkKnowledge(id){
         method:'get',
     })
 }
+
+export function updateKnowledge(id,status){
+    return request({
+        url:path+'/updateKnowledge?id='+id+'&status='+status,
+        method:'get',
+    })
+}
+
+export function getDocQuaList(){
+    return request({
+        url:path+'/getDocQuaList',
+        method:'get',
+    })
+}

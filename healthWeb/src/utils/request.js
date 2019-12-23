@@ -36,9 +36,7 @@ function addGlobalParam(config, key, value){
 // request拦截器
 service.interceptors.request.use(config => {
   // add clientId query param globally
-  if(!window.localStorage.getItem("docId")){
-    this.$router.push('/login')
-  }
+  
   let user = JSON.parse(sessionStorage.getItem('user') || '{}')
   if (!user.client){
     return config

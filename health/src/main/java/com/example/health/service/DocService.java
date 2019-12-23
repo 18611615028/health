@@ -19,4 +19,6 @@ public interface DocService {
     List<Knowledge> getKnowledgeList();
     void createKnowledge(Knowledge knowledge);
     Knowledge checkKnowledge(int id);
+    void updateKnowledge(int id,int status);
+    List<Doc> getDocQuaList();
 }

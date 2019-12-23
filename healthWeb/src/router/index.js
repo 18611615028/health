@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+
+
 export default new Router({
   routes: [
     {
@@ -54,6 +56,26 @@ export default new Router({
       path: '/information',
       name: 'information',
       component: () => import("@/components/information")
+    },
+    {
+      path: '/admin/knowledgeList',
+      name: 'adminKnowledgeList',
+      component: () => import("@/components/adminKnowledgeList")
+    },
+    {
+      path: '/admin/knowledge',
+      name: 'adminKnowledge',
+      component: () => import("@/components/adminKnowledge")
+    },
+    {
+      path: '/admin/qualificationList',
+      name: 'adminQualificationList',
+      component: () => import("@/components/adminQualificationList")
+    },
+    {
+      path: '/admin/qualification',
+      name: 'adminQualification',
+      component: () => import("@/components/adminQualification")
     },
   ]
 })

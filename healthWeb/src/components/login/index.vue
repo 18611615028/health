@@ -58,6 +58,8 @@ export default {
       roles: ""
     };
   },
+  mounted(){
+  },
 
   methods: {
     login() {
@@ -74,9 +76,10 @@ export default {
             window.localStorage.setItem("docId", res.data)
             this.$router.push("/appointment")
           }
-        }).catch(err=>{
-          this.$message.error("用户名或密码错误");
         })
+        // .catch(err=>{
+        //   this.$message.error("用户名或密码错误");
+        // })
       }
       if (this.roles == "管理员") {
           var data = {
@@ -86,7 +89,7 @@ export default {
         DocService.loginAdmin(data).then(res => {
           if (res.status == 200) {
             window.localStorage.setItem("adminId", res.data)
-            this.$router.push("/appointment")
+            this.$router.push("/admin/knowledgeList")
           }
         }).catch(err=>{
           this.$message.error("用户名或密码错误");
