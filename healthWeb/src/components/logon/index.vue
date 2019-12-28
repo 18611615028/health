@@ -12,9 +12,9 @@
         <el-form-item label="密码" prop="passWord" style="width:300px">
           <el-input v-model="form.passWord"></el-input>
         </el-form-item>
-        <el-form-item label="生日" prop="birth" style="width:300px">
+        <!-- <el-form-item label="生日" prop="birth" style="width:300px">
           <el-date-picker v-model="form.birth" type="date" placeholder="选择日期" value-format="yyyy-MM-dd"></el-date-picker>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">注册</el-button>
           <el-button @click="goBack()">取消</el-button>

@@ -12,9 +12,9 @@
         <el-form-item label="密码" prop="passWord" style="width:300px">
           <el-input :disabled="!update" v-model="form.passWord"></el-input>
         </el-form-item>
-        <el-form-item label="生日" porp="birth" style="width:300px">
+        <!-- <el-form-item label="生日" porp="birth" style="width:300px">
           <el-date-picker :disabled="!update" v-model="form.birth" type="date" placeholder="选择日期" value-format="yyyy-MM-dd"></el-date-picker>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item>
           <el-button v-if="!update" type="primary" @click="willUpdate()">修改</el-button>
           <el-button v-if="update" type="primary" @click="updateDoc('ruleForm')">保存</el-button>
