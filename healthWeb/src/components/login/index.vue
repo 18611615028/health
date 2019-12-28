@@ -16,7 +16,7 @@
         <div style="display: inline-block;width:65px">
           <span>密码：</span>
         </div>
-        <el-input v-model="passWord" style="width:300px"></el-input>
+        <el-input type="password" v-model="passWord" style="width:300px"></el-input>
       </div>
       <div>
         <div style="display: inline-block;width:65px">

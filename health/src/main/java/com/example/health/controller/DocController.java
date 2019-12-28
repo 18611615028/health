@@ -91,4 +91,101 @@ public class DocController {
     public List<Doc> getDocQuaList(){
         return docService.getDocQuaList();
     }
+
+    @RequestMapping(value = "/loginUser",method = RequestMethod.POST)
+    public int loginUser(@RequestBody User user){
+        return docService.loginUser(user);
+    }
+
+    @RequestMapping(value = "/logonUser",method = RequestMethod.POST)
+    public void logonUser(@RequestBody User user )throws Exception {
+        docService.logonUser(user);
+    }
+
+    @RequestMapping(value = "/getAppointment",method = RequestMethod.GET)
+    public List<QueryCondition> getAppointment(int userId){
+         return docService.getAppointment(userId);
+    }
+
+    @RequestMapping(value = "/getUser",method = RequestMethod.GET)
+    public User getUser(int userId){
+        return docService.getUser(userId);
+    }
+
+    @RequestMapping(value = "/userAppointment",method = RequestMethod.POST)
+    public void userAppointment(@RequestBody User user){
+        docService.userAppointment(user);
+    }
+
+    @RequestMapping(value = "/updateAppointment",method = RequestMethod.POST)
+    public void updateAppointment(@RequestBody User user){
+        docService.updateAppointment(user);
+    }
+
+    @RequestMapping(value = "/deleteAppointment",method = RequestMethod.POST)
+    public void deleteAppointment(@RequestBody User user){
+        docService.deleteAppointment(user);
+    }
+
+    @RequestMapping(value = "/getAllReport",method = RequestMethod.GET)
+    public List<Health> getAllReport(int userId){
+        return docService.getAllReport(userId);
+    }
+
+    @RequestMapping(value = "/getDocList",method = RequestMethod.POST)
+    public List<Doc> getDocList(@RequestBody  List<Integer> docList){
+        return docService.getDocList(docList);
+    }
+
+    @RequestMapping(value = "/getHealthUserList",method = RequestMethod.GET)
+    public List<Health> getHealthUserList(int userId){
+        return docService.getHealthUserList(userId);
+    }
+
+    @RequestMapping(value = "/getHealthUser",method = RequestMethod.POST)
+    public Health getHealthUser(@RequestBody  Health health){
+        return docService.getHealthUser(health);
+    }
+
+    @RequestMapping(value = "/createHealthUser",method = RequestMethod.POST)
+    public void createHealthUser(@RequestBody  Health health){
+        docService.createHealthUser(health);
+    }
+
+    @RequestMapping(value = "/deleteHealthUser",method = RequestMethod.POST)
+    public void deleteHealthUser(@RequestBody  Health health){
+        docService.deleteHealthUser(health);
+    }
+
+    @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
+    public void updateUser(@RequestBody  User user){
+        docService.updateUser(user);
+    }
+
+    @RequestMapping(value = "/getUserKnowledgeList",method = RequestMethod.GET)
+    public List<Knowledge> getUserKnowledgeList(){
+        return docService.getUserKnowledgeList();
+    }
+
+    @RequestMapping(value = "/getUserKnowledgeList2",method = RequestMethod.GET)
+    public List<Knowledge> getUserKnowledgeList2(int userId){
+        return docService.getUserKnowledgeList2(userId);
+    }
+
+    @RequestMapping(value = "/collect",method = RequestMethod.POST)
+    public int collect(@RequestBody Knowledge knowledge){
+        docService.collect(knowledge);
+        return 1;
+    }
+
+    @RequestMapping(value = "/selectCollect",method = RequestMethod.GET)
+    public int selectCollect(int userId,int Id){
+        return docService.selectCollect(userId,Id);
+    }
+
+    @RequestMapping(value = "/deleteCollect",method = RequestMethod.GET)
+    public int deleteCollect(int userId,int Id){
+        docService.deleteCollect(userId,Id);
+        return 0;
+    }
 }

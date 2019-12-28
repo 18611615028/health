@@ -11,6 +11,7 @@ public class QueryCondition {
     int finish;
     String time;
 
+
     public String getTime() {
         return time;
     }

@@ -1,12 +1,21 @@
 package com.example.health.domin;
 
 public class Knowledge {
+    int userId;
     int id;
     String knowledge;
     String title;
     String time;
     int docCId;
     int status;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public int getId() {
         return id;

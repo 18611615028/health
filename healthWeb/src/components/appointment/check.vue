@@ -238,7 +238,7 @@ export default {
         xueTang: "",
         fei: "",
         xinZang: "",
-        fuBU: "",
+        fuBu: "",
         shenZang: "",
         nDocId: ""
       },
@@ -429,7 +429,7 @@ export default {
           xueTang: this.ruleForm.xueTang,
           fei: this.ruleForm.fei,
           xinZang: this.ruleForm.xinZang,
-          fuBU: this.ruleForm.fuBU,
+          fuBu: this.ruleForm.fuBu,
           shenZang: this.ruleForm.shenZang,
           nDocId: Number(window.localStorage.getItem("docId"))
         };

@@ -21,4 +21,23 @@ public interface DocService {
     Knowledge checkKnowledge(int id);
     void updateKnowledge(int id,int status);
     List<Doc> getDocQuaList();
+    int loginUser(User user);
+    void logonUser(User user) throws Exception;
+    List<QueryCondition> getAppointment(int userId);
+    User getUser(int userId);
+    void userAppointment(User user);
+    void updateAppointment(User user);
+    void deleteAppointment(User user);
+    List<Health> getAllReport(int userId);
+    List<Doc> getDocList(List<Integer> docList);
+    List<Health> getHealthUserList(int userId);
+    Health getHealthUser(Health health);
+    void createHealthUser(Health health);
+    void deleteHealthUser(Health health);
+    void updateUser(User user);
+    List<Knowledge> getUserKnowledgeList();
+    List<Knowledge> getUserKnowledgeList2(int userId);
+    void collect(Knowledge knowledge);
+    int selectCollect(int userId,int Id);
+    void deleteCollect(int userId,int Id);
 }

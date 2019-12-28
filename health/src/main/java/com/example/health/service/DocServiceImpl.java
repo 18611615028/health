@@ -109,4 +109,102 @@ public class DocServiceImpl implements DocService{
     public List<Doc> getDocQuaList(){
         return docMapper.getDocQuaList();
     }
+
+    @Override
+    public int loginUser(User user){
+        return docMapper.loginUser(user);
+    }
+
+    @Override
+    public void logonUser(User user) throws Exception {
+        if(docMapper.beforeLogonUser(user.getUserName())>0){
+            throw new Exception();
+        }
+        docMapper.logonUser(user);
+    }
+
+    @Override
+    public List<QueryCondition> getAppointment(int userId) {
+       return docMapper.getAppointment(userId);
+    }
+
+    @Override
+    public User getUser(int userId) {
+        return docMapper.getUser(userId);
+    }
+
+    @Override
+    public void userAppointment(User user) {
+        docMapper.userAppointment(user);
+    }
+
+    @Override
+    public void updateAppointment(User user) {
+        docMapper.updateAppointmentUser(user);
+    }
+
+    @Override
+    public void deleteAppointment(User user) {
+        docMapper.deleteAppointment(user);
+    }
+
+    @Override
+    public List<Health> getAllReport(int userId) {
+        return docMapper.getAllReport(userId);
+    }
+
+    @Override
+    public List<Doc> getDocList(List<Integer> docList) {
+        return docMapper.getDocList(docList);
+    }
+
+    @Override
+    public List<Health> getHealthUserList(int userId) {
+        return docMapper.getHealthUserList(userId);
+    }
+
+    @Override
+    public Health getHealthUser(Health health) {
+        return docMapper.getHealthUser(health);
+    }
+
+    @Override
+    public void createHealthUser(Health health) {
+        docMapper.createHealthUser(health);
+    }
+
+    @Override
+    public void deleteHealthUser(Health health) {
+        docMapper.deleteHealthUser(health);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        docMapper.updateUser(user);
+    }
+
+    @Override
+    public List<Knowledge> getUserKnowledgeList() {
+        return docMapper.getUserKnowledgeList();
+    }
+
+    @Override
+    public List<Knowledge> getUserKnowledgeList2(int userId) {
+        return docMapper.getUserKnowledgeList2(userId);
+    }
+
+    @Override
+    public void collect(Knowledge knowledge) {
+        docMapper.collect(knowledge);
+    }
+
+    @Override
+    public int selectCollect(int userId,int Id) {
+        return docMapper.selectCollect(userId,Id);
+    }
+
+    @Override
+    public void deleteCollect(int userId,int Id) {
+        docMapper.deleteCollect(userId,Id);
+    }
 }

@@ -3,6 +3,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.health.mapper.DocMapper">
 
+    <select id="loginUser" resultType="int">
+        select userId from `user`
+        where userName=#{user.userName} and passWord=#{user.passWord}
+    </select>
+
+    <select id="beforeLogonUser" resultType="int">
+        select count(*) from `user`
+        where userName=#{userName}
+    </select>
+
+    <insert id="logonUser">
+        insert into `user`
+        (BIRTH,
+        USERNAME,PASSWORD,SEX,PHONENUM,ADDRESS,NOTICE,`NAME`)
+        values (#{user.birth},#{user.userName},#{user.passWord},#{user.sex},#{user.phoneNum},#{user.address},#{user.notice},#{user.name})
+    </insert>
+
     <select id="login" resultType="int">
         select DOCID from doc
         where userName=#{userName} and passWord=#{passWord}
@@ -165,7 +182,7 @@
     <update id="updateDocQua">
         update doc_qua
         <set>
-            <if test="doc.docCId != null">
+            <if test="doc.docCId != 0">
             DOCCID = #{doc.docCId},
             </if>
             <if test="doc.office != null">
@@ -215,4 +232,115 @@
         select * from doc_qua
         where STATUS=1
     </select>
+
+    <select id="getAppointment" resultType="com.example.health.domin.QueryCondition">
+        select * from appointment
+        where USERID=#{userId} and (FINISH=1 or FINISH=2 or FINISH=3)
+    </select>
+
+    <select id="getUser" resultType="com.example.health.domin.User">
+        select * from `user`
+        where USERID=#{userId}
+    </select>
+
+    <insert id="userAppointment">
+        insert into appointment
+        (USERID,`TIME`,`NAME`,SEX,NOTE,FINISH)
+        values (#{user.userId},#{user.time},#{user.name},#{user.sex},#{user.notice},1)
+    </insert>
+
+    <update id="updateAppointmentUser">
+        update appointment
+        <set>
+        <if test="user.time != null">
+            `TIME` = #{user.time},
+        </if>
+            <if test="user.notice != null">
+                NOTE = #{user.notice}
+            </if>
+        </set>
+        where USERID=#{user.userId} and FINISH=1
+    </update>
+
+    <delete id="deleteAppointment">
+        delete from appointment where USERID=#{user.userId} and FINISH=1
+    </delete>
+
+    <select id="getAllReport" resultType="com.example.health.domin.Health">
+        select * from health
+        where USERID=#{userId} order by `TIME` desc
+    </select>
+
+    <select id="getDocList" resultType="com.example.health.domin.Doc">
+        select * from doc_qua
+        where docID in
+        <foreach item="item" collection="docList" separator="," open="(" close=")" index="">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getHealthUserList" resultType="com.example.health.domin.Health">
+        select * from health_user
+        where userId = #{userId} order by `TIME` desc
+    </select>
+
+    <select id="getHealthUser" resultType="com.example.health.domin.Health">
+        select * from health_user
+        where userId = #{health.userId} and `TIME` = #{health.time}
+    </select>
+
+    <insert id="createHealthUser">
+        insert into health_user
+        (USERID,
+        `TIME`,XUEYA,XUETANG,FEI,XINZANG,FUBU,SHENZANG,SHENGAO,TIZHONG,FEIHUO,WAISHANG,EYEL,EYER,COLOR)
+        values (#{health.userId},#{health.time},#{health.xueYa},#{health.xueTang},#{health.fei},#{health.xinZang},#{health.fuBu},#{health.shenZang},#{health.shenGao},#{health.tiZhong},#{health.feiHuo},#{health.waiShang},#{health.eyeL},#{health.eyeR},#{health.color})
+    </insert>
+
+    <delete id="deleteHealthUser">
+        delete from health_user where USERID=#{health.userId} and `TIME`=#{health.time}
+    </delete>
+
+    <update id="updateUser">
+        update user
+        <set>
+            <if test="user.passWord != null">
+                PASSWORD = #{user.passWord},
+            </if>
+            <if test="user.phoneNum != null">
+                PHONENUM = #{user.phoneNum},
+            </if>
+            <if test="user.address != null">
+                ADDRESS = #{user.address},
+            </if>
+            <if test="user.notice != null">
+                NOTICE = #{user.notice},
+            </if>
+        </set>
+        where USERID=#{user.userId}
+    </update>
+
+    <select id="getUserKnowledgeList" resultType="com.example.health.domin.Knowledge">
+        select * from knowledge
+        where STATUS=3
+    </select>
+
+    <select id="getUserKnowledgeList2" resultType="com.example.health.domin.Knowledge">
+        select * from knowledge_user
+        where USERID=#{userId}
+    </select>
+
+    <insert id="collect">
+        insert into knowledge_user
+        (ID,USERID,TITLE)
+        values (#{knowledge.id},#{knowledge.userId},#{knowledge.title})
+    </insert>
+
+    <select id="selectCollect" resultType="int">
+        select count(*) from knowledge_user
+        where USERID=#{userId} and ID=#{Id}
+    </select>
+
+    <delete id="deleteCollect">
+        delete from knowledge_user where USERID=#{userId} and ID=#{Id}
+    </delete>
 </mapper>

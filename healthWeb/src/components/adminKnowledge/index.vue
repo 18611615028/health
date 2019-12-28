@@ -63,7 +63,6 @@ export default {
         .then(res => {
           if (res.status == 200) {
             this.form = res.data;
-            console.info(this.form)
           }
         })
         .catch(err => {
