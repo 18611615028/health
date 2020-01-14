@@ -46,12 +46,12 @@
             ></el-input>
           </el-form-item>
           <el-form-item v-if="status==1 && !show">
-            <el-button type="primary" @click="create()">已体检</el-button>
+            <el-button :disabled="this.docStatus == null" type="primary" @click="create()">已体检</el-button>
             <el-button @click="goBack()">返回</el-button>
           </el-form-item>
           <div v-if="status==2 || status==3 ||show ||status==4">
             <el-form-item v-if="status!=4" label="体检项目">
-              <el-select style="width:220px" v-model="docStatus">
+              <el-select :disabled="true" style="width:220px" v-model="docStatus">
                 <el-option label="外科" value="外科"></el-option>
                 <el-option label="内科" value="内科"></el-option>
                 <el-option label="眼科" value="眼科"></el-option>
@@ -242,7 +242,7 @@ export default {
         shenZang: "",
         nDocId: ""
       },
-      docStatus: "外科",
+      docStatus: "",
       status: null,
       xueYa1: "",
       xueYa2: "",
@@ -256,8 +256,17 @@ export default {
   mounted() {
     this.status = this.$route.query.finish;
     this.load();
+    this.getOffice()
   },
   methods: {
+    getOffice(){
+      DocService.selectOffice(Number(this.$route.query.id)).then(res => {
+              if (res.status == 200){
+                this.docStatus = res.data.office
+              }
+            })
+    },
+
     load() {
       if (this.status == 1) {
         //未体检

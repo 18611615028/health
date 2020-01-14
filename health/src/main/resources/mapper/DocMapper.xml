@@ -343,4 +343,9 @@
     <delete id="deleteCollect">
         delete from knowledge_user where USERID=#{userId} and ID=#{Id}
     </delete>
+
+    <select id="selectOffice" resultType="com.example.health.domin.Doc">
+        select * from doc_qua
+        where DOCID=#{docId}
+    </select>
 </mapper>

@@ -34,6 +34,13 @@ export function getAppointmentList(data){
     })
 }
 
+export function selectOffice(docId){
+    return request({
+        url:path+'/selectOffice?docId='+docId,
+        method:'get',
+    })
+}
+
 export function updateHealth(data){
     return request({
         url:path+'/updateHealth',

@@ -74,7 +74,15 @@ export default {
         DocService.login(data).then(res => {
           if (res.status == 200) {
             window.localStorage.setItem("docId", res.data)
-            this.$router.push("/appointment")
+            DocService.selectOffice(res.data).then(res => {
+              if (res.status == 200){
+                if(res.data.office != null){
+                  this.$router.push("/appointment")
+                } else {
+                  this.$router.push("/qualification")
+                }
+              }
+            })
           }
         })
         // .catch(err=>{

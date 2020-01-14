@@ -47,4 +47,5 @@ public interface DocMapper {
     void collect(@Param("knowledge") Knowledge knowledge);
     int selectCollect(@Param("userId") int userId,@Param("Id") int Id);
     void deleteCollect(@Param("userId") int userId,@Param("Id") int Id);
+    Doc selectOffice(@Param("docId") int docId);
 }

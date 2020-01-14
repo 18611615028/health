@@ -207,4 +207,9 @@ public class DocServiceImpl implements DocService{
     public void deleteCollect(int userId,int Id) {
         docMapper.deleteCollect(userId,Id);
     }
+
+    @Override
+    public Doc selectOffice(int docId) {
+        return docMapper.selectOffice(docId);
+    }
 }

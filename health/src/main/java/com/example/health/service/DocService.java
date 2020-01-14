@@ -40,4 +40,5 @@ public interface DocService {
     void collect(Knowledge knowledge);
     int selectCollect(int userId,int Id);
     void deleteCollect(int userId,int Id);
+    Doc selectOffice(int docId);
 }

@@ -188,4 +188,9 @@ public class DocController {
         docService.deleteCollect(userId,Id);
         return 0;
     }
+
+    @RequestMapping(value = "/selectOffice",method = RequestMethod.GET)
+    public Doc selectOffice(int docId){
+        return docService.selectOffice(docId);
+    }
 }
